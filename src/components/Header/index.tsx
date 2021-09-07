@@ -1,6 +1,5 @@
-import React from 'react';
-import { useNavigation } from '@react-navigation/native';
-
+import React from "react";
+import { useNavigation } from "@react-navigation/native";
 
 import {
   Container,
@@ -14,20 +13,20 @@ import {
   Icon,
   BackButton,
   Title,
-} from './styles';
+} from "./styles";
 
 interface HeaderProps {
   user?: {
     name: string;
     avatar_url: string;
-  }
+  };
 }
 
 export function Header({ user }: HeaderProps) {
   const { navigate, goBack } = useNavigation();
 
   function handleAddPass() {
-    navigate('RegisterLoginData');
+    navigate("RegisterLoginData");
   }
 
   return (
@@ -36,11 +35,11 @@ export function Header({ user }: HeaderProps) {
       style={{
         ...(user
           ? {
-            backgroundColor: '#1967FB'
-          }
+              backgroundColor: "#1967FB",
+            }
           : {
-            backgroundColor: '#FFFFFF'
-          })
+              backgroundColor: "#FFFFFF",
+            }),
       }}
     >
       {user ? (
@@ -50,34 +49,24 @@ export function Header({ user }: HeaderProps) {
 
             <TextContainer>
               <HelloMessage>
-                Olá, <BoldText>{user.name}</BoldText>
+                Hello, <BoldText>{user.name}</BoldText>
               </HelloMessage>
 
-              <SecondaryMessage>
-                Sinta-se seguro aqui
-              </SecondaryMessage>
+              <SecondaryMessage>Feel safe here</SecondaryMessage>
             </TextContainer>
           </AboutUser>
 
           <AddButton onPress={handleAddPass}>
-            <Icon
-              name="plus"
-              color="#FFFFFF"
-              size={24}
-            />
+            <Icon name="plus" color="#FFFFFF" size={24} />
           </AddButton>
         </>
       ) : (
         <>
           <BackButton onPress={goBack}>
-            <Icon
-              name="chevron-left"
-              color="#1967FB"
-              size={28}
-            />
+            <Icon name="chevron-left" color="#1967FB" size={28} />
           </BackButton>
 
-          <Title>Cadastro de senha</Title>
+          <Title>Password registration</Title>
         </>
       )}
     </Container>
