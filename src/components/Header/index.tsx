@@ -49,10 +49,10 @@ export function Header({ user }: HeaderProps) {
 
             <TextContainer>
               <HelloMessage>
-                Hello, <BoldText>{user.name}</BoldText>
+                Olá, <BoldText>{user.name}</BoldText>
               </HelloMessage>
 
-              <SecondaryMessage>Feel safe here</SecondaryMessage>
+              <SecondaryMessage>Sinta-se seguro aqui</SecondaryMessage>
             </TextContainer>
           </AboutUser>
 
@@ -66,7 +66,7 @@ export function Header({ user }: HeaderProps) {
             <Icon name="chevron-left" color="#1967FB" size={28} />
           </BackButton>
 
-          <Title>Password registration</Title>
+          <Title>Cadastro de senha</Title>
         </>
       )}
     </Container>
