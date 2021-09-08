@@ -30,15 +30,27 @@ export function Home() {
 
   async function loadData() {
     const dataKey = "@savepass:logins";
-    // Get asyncStorage data, use setSearchListData and setData
+    const response = await AsyncStorage.getItem(dataKey);
+    const loginsData = response ? JSON.parse(response) : [];
+
+    setData(loginsData);
+    setSearchListData(loginsData);
   }
 
   function handleFilterLoginData() {
-    // Filter results inside data, save with setSearchListData
+    let result = [];
+
+    data.find((loginData) => {
+      if (loginData.service_name.includes(searchText)) {
+        result.push(loginData);
+      }
+    });
+
+    setSearchListData(result);
   }
 
   function handleChangeInputText(text: string) {
-    // Update searchText value
+    setSearchText(text);
   }
 
   useFocusEffect(
@@ -57,7 +69,7 @@ export function Home() {
       />
       <Container>
         <SearchBar
-          placeholder="What password are you looking for?"
+          placeholder="Qual senha você procura?"
           onChangeText={handleChangeInputText}
           value={searchText}
           returnKeyType="search"
@@ -66,11 +78,11 @@ export function Home() {
         />
 
         <Metadata>
-          <Title>Your passwords</Title>
+          <Title>Suas senhas</Title>
           <TotalPassCount>
             {searchListData.length
-              ? `${`${searchListData.length}`.padStart(2, "0")} in total`
-              : "Nothing to show"}
+              ? `${`${searchListData.length}`.padStart(2, "0")} ao total`
+              : "Nada a ser exibido"}
           </TotalPassCount>
         </Metadata>
 
